@@ -419,12 +419,19 @@ public struct SettingsView: View {
 
             ZStack {
                 Circle()
-                    .fill(Color.accentColor.opacity(0.15))
-                    .frame(width: 80, height: 80)
+                    .fill(LinearGradient(colors: [Color.blue.opacity(0.2), Color.indigo.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .frame(width: 88, height: 88)
 
-                Image(systemName: "bolt.horizontal.circle.fill")
-                    .font(.system(size: 48))
-                    .foregroundColor(.accentColor)
+                if let icon = NSImage(named: "AppIcon") {
+                    Image(nsImage: icon)
+                        .resizable()
+                        .frame(width: 72, height: 72)
+                        .cornerRadius(16)
+                } else {
+                    Image(systemName: "wifi")
+                        .font(.system(size: 40, weight: .bold))
+                        .foregroundColor(.blue)
+                }
             }
 
             VStack(spacing: 4) {
@@ -444,9 +451,9 @@ public struct SettingsView: View {
                 .padding(.horizontal, 32)
 
             Divider()
-                .frame(width: 300)
+                .frame(width: 320)
 
-            VStack(spacing: 4) {
+            VStack(spacing: 6) {
                 Text("Designed & Built for macOS 14 Sonoma and newer")
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -457,8 +464,19 @@ public struct SettingsView: View {
 
                 Text("Developer: \(L10n.string(.developerName, language: settings.language))")
                     .font(.caption)
-                    .foregroundColor(.secondary)
-                    .padding(.top, 4)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+
+                Button(action: {
+                    if let url = URL(string: "https://github.com/Kamandlou/NetPulse") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }) {
+                    Label("GitHub Repository", systemImage: "link")
+                        .font(.caption)
+                }
+                .buttonStyle(.link)
+                .padding(.top, 4)
             }
 
             Spacer()
