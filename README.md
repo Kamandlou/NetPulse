@@ -36,7 +36,7 @@
 ### 🇬🇧 English Installation Guide
 
 1. **Download the latest release**:
-   Download `NetPulse-1.0.0.dmg` from the [Releases Page](https://github.com/Kamandlou/NetPulse/releases/latest).
+   Download `NetPulse-1.1.0.dmg` from the [Releases Page](https://github.com/Kamandlou/NetPulse/releases/latest).
 2. **Install**:
    Open the `.dmg` file and drag **NetPulse** into your `Applications` folder.
 3. **Launch**:
@@ -55,7 +55,7 @@
 ### 🇮🇷 راهنمای نصب فارسی
 
 ۱. **دانلود برنامه:**
-   فایل نصبی `NetPulse-1.0.0.dmg` را از [صفحه آخرین نسخه در گیت‌هاب (Releases)](https://github.com/Kamandlou/NetPulse/releases/latest) دانلود کنید.
+   فایل نصبی `NetPulse-1.1.0.dmg` را از [صفحه آخرین نسخه در گیت‌هاب (Releases)](https://github.com/Kamandlou/NetPulse/releases/latest) دانلود کنید.
 
 ۲. **انتقال به برنامه‌ها:**
    فایل `.dmg` دانلود شده را باز کرده و آیکون **NetPulse** را به داخل پوشه **Applications** بکشید (Drag & Drop).
@@ -107,8 +107,8 @@ bash scripts/build_app.sh
 
 This compiles a release binary, constructs the `NetPulse.app` bundle, embeds the `Info.plist`, `AppIcon.icns`, and entitlements, applies ad-hoc code signing, and creates:
 - `build/NetPulse.app` (Runnable macOS application)
-- `build/NetPulse-1.0.0.zip` (Compressed distribution archive)
-- `build/NetPulse-1.0.0.dmg` (macOS Drag-and-Drop installer disk image)
+- `build/NetPulse-1.1.0.zip` (Compressed distribution archive)
+- `build/NetPulse-1.1.0.dmg` (macOS Drag-and-Drop installer disk image)
 
 ### 4. Open in Xcode
 ```bash

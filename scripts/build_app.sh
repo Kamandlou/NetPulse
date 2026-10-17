@@ -38,8 +38,10 @@ codesign --force --deep --sign - \
 echo "==> Verifying signature..."
 codesign --verify --deep --strict --verbose=2 "$APP_DIR"
 
+VERSION="1.1.0"
+
 echo "==> Packaging ZIP archive..."
-(cd build && zip -r -y "NetPulse-1.0.0.zip" "NetPulse.app")
+(cd build && zip -r -y "NetPulse-${VERSION}.zip" "NetPulse.app")
 
 echo "==> Packaging DMG disk image..."
 DMG_STAGING="build/dmg_staging"
@@ -50,7 +52,7 @@ ln -s /Applications "$DMG_STAGING/Applications"
 hdiutil create -volname "NetPulse" \
     -srcfolder "$DMG_STAGING" \
     -ov -format UDZO \
-    "build/NetPulse-1.0.0.dmg"
+    "build/NetPulse-${VERSION}.dmg"
 
 rm -rf "$DMG_STAGING"
 
