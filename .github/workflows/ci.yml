@@ -1,0 +1,35 @@
+name: CI & Build
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-build:
+    name: Build & Test NetPulse
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app || true
+
+      - name: Run Automated Tests
+        run: swift test
+
+      - name: Build Application Bundle & Packages
+        run: bash scripts/build_app.sh
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetPulse-macOS-Build
+          path: |
+            build/NetPulse-1.0.0.zip
+            build/NetPulse-1.0.0.dmg
+          if-no-files-found: error
