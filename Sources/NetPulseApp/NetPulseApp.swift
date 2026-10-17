@@ -18,6 +18,7 @@ struct NetPulseApp: App {
     var body: some Scene {
         MenuBarExtra {
             MenuBarPopupView(monitor: monitor, settings: settings, historyStore: historyStore)
+                .preferredColorScheme(settings.appearance.colorScheme)
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: monitor.state.menuBarSymbol)

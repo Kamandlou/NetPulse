@@ -59,15 +59,15 @@ jobs:
             A lightweight, privacy-friendly native macOS menu bar application that continuously monitors real internet connectivity and notifies users when their internet connection drops or recovers.
 
             #### 📦 Download
-            - **macOS Disk Image (Installer)**: [NetPulse-1.2.1.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.2.1.dmg)
-            - **ZIP Archive**: [NetPulse-1.2.1.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.2.1.zip)
+            - **macOS Disk Image (Installer)**: [NetPulse-1.2.2.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.2.2.dmg)
+            - **ZIP Archive**: [NetPulse-1.2.2.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.2.2.zip)
 
             #### 💻 Compatibility
             - macOS 14 Sonoma, macOS 15 Sequoia, and newer
             - Runs natively on Apple Silicon (M1/M2/M3/M4) and Intel Macs
 
-            #### 🚀 What's New in v1.2.1
-            - **Accurate Real-time VPN Disconnection Detection**: Completely resolved false VPN active states caused by macOS internal tunnels. NetPulse now filters internal tunnels (AirDrop/Continuity) and monitors live VPN status per second when the pop-up menu is open.
-            - **Live Refresh**: As soon as you disconnect or connect your VPN, the status reflects instantly without restarting.
+            #### 🚀 What's New in v1.2.2
+            - **Dark Mode Contrast Optimization**: Replaced opaque control backgrounds with frosted Apple native materials (`.regularMaterial` and `.ultraThinMaterial`). Pop-up card now blends seamlessly against dark wallpapers and windows.
+            - **Typography & Layout Polish**: Truncation-free metric titles and softer harmonious color accents.
           draft: false
           prerelease: false

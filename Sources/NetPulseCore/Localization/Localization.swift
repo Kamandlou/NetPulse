@@ -159,8 +159,8 @@ public struct L10n {
         .justNow: "Just now",
         .secondsAgo: "%d sec ago",
 
-        .totalDowntimeToday: "Downtime Today",
-        .outagesToday: "Outages Today",
+        .totalDowntimeToday: "Downtime",
+        .outagesToday: "Outages",
         .lastOutageDuration: "Last Outage",
         .uptimeToday: "Uptime Today",
         .availability: "Availability",
@@ -271,8 +271,8 @@ public struct L10n {
         .justNow: "هم‌اکنون",
         .secondsAgo: "%d ثانیه پیش",
 
-        .totalDowntimeToday: "مدت قطعی امروز",
-        .outagesToday: "تعداد قطعی‌های امروز",
+        .totalDowntimeToday: "زمان قطعی",
+        .outagesToday: "تعداد قطعی",
         .lastOutageDuration: "آخرین قطعی",
         .uptimeToday: "پایداری امروز",
         .availability: "درصد دسترسی",

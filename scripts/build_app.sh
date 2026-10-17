@@ -38,7 +38,7 @@ codesign --force --deep --sign - \
 echo "==> Verifying signature..."
 codesign --verify --deep --strict --verbose=2 "$APP_DIR"
 
-VERSION="1.2.1"
+VERSION="1.2.2"
 
 echo "==> Packaging ZIP archive..."
 (cd build && zip -r -y "NetPulse-${VERSION}.zip" "NetPulse.app")

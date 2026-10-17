@@ -439,7 +439,7 @@ public struct SettingsView: View {
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Version 1.2.1 (Build 4)")
+                Text("Version 1.2.2 (Build 5)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }

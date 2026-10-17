@@ -49,7 +49,15 @@ public struct MenuBarPopupView: View {
             actionsSection
         }
         .padding(14)
-        .frame(width: 328)
+        .frame(width: 336)
+        .background(
+            ZStack {
+                Rectangle()
+                    .fill(Color(nsColor: .windowBackgroundColor).opacity(0.75))
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+            }
+        )
         .environment(\.layoutDirection, settings.language.layoutDirection)
         .onAppear {
             monitor.refreshVPNStatus()
@@ -107,7 +115,7 @@ public struct MenuBarPopupView: View {
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .fill(Color(nsColor: .controlBackgroundColor).opacity(0.85))
+                .fill(.regularMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 14, style: .continuous)
                         .stroke(Color.primary.opacity(0.08), lineWidth: 1)
@@ -173,7 +181,7 @@ public struct MenuBarPopupView: View {
         }
         .padding(.horizontal, 6)
         .padding(.vertical, 2)
-        .background(Capsule().fill(Color(nsColor: .windowBackgroundColor).opacity(0.8)))
+        .background(Capsule().fill(.ultraThinMaterial))
     }
 
     // MARK: - Metrics Cards Section
@@ -190,21 +198,21 @@ public struct MenuBarPopupView: View {
                 title: L10n.string(.totalDowntimeToday, language: settings.language),
                 value: OutageRecord.formatDuration(todaySummary.totalDowntime, language: settings.language),
                 icon: "clock.fill",
-                accentColor: todaySummary.totalDowntime > 0 ? .red : .green
+                accentColor: todaySummary.totalDowntime > 0 ? .red : .secondary
             )
 
             metricCard(
                 title: L10n.string(.outagesToday, language: settings.language),
                 value: "\(todaySummary.outageCount)",
                 icon: "bolt.slash.fill",
-                accentColor: todaySummary.outageCount > 0 ? .orange : .secondary
+                accentColor: todaySummary.outageCount > 0 ? .red : .secondary
             )
 
             metricCard(
                 title: L10n.string(.availability, language: settings.language),
                 value: String(format: "%.1f%%", todaySummary.availabilityPercentage),
                 icon: "shield.checkerboard",
-                accentColor: todaySummary.availabilityPercentage >= 99.0 ? .green : .orange
+                accentColor: todaySummary.availabilityPercentage >= 99.0 ? .green : (todaySummary.availabilityPercentage >= 95.0 ? .orange : .red)
             )
         }
     }
@@ -216,25 +224,27 @@ public struct MenuBarPopupView: View {
                     .font(.system(size: 9.5, weight: .medium))
                     .foregroundColor(.secondary)
                     .lineLimit(1)
+                    .minimumScaleFactor(0.8)
                 Spacer()
                 Image(systemName: icon)
                     .font(.system(size: 9))
-                    .foregroundColor(accentColor.opacity(0.8))
+                    .foregroundColor(accentColor.opacity(0.85))
             }
 
             Text(value)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundColor(accentColor)
                 .lineLimit(1)
+                .minimumScaleFactor(0.85)
         }
         .padding(8)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color(nsColor: .controlBackgroundColor).opacity(0.65))
+                .fill(.ultraThinMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+                        .stroke(Color.primary.opacity(0.08), lineWidth: 1)
                 )
         )
     }
@@ -263,8 +273,8 @@ public struct MenuBarPopupView: View {
                 title: L10n.string(.vpnStatus, language: settings.language),
                 value: monitor.isVPNConnected ? L10n.string(.vpnConnected, language: settings.language) : L10n.string(.vpnDisconnected, language: settings.language),
                 icon: monitor.isVPNConnected ? "lock.shield.fill" : "shield.slash",
-                iconColor: monitor.isVPNConnected ? .purple : .secondary,
-                valueColor: monitor.isVPNConnected ? .purple : .secondary
+                iconColor: monitor.isVPNConnected ? .indigo : .secondary,
+                valueColor: monitor.isVPNConnected ? .indigo : .secondary
             )
 
             detailRow(
@@ -287,7 +297,7 @@ public struct MenuBarPopupView: View {
         .padding(10)
         .background(
             RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(Color(nsColor: .controlBackgroundColor).opacity(0.65))
+                .fill(.regularMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .stroke(Color.primary.opacity(0.06), lineWidth: 1)

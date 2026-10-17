@@ -3,6 +3,6 @@ import Testing
 
 @Suite struct BasicTests {
     @Test func version() {
-        #expect(NetPulseVersion.current == "1.2.1")
+        #expect(NetPulseVersion.current == "1.2.2")
     }
 }

@@ -1,5 +1,5 @@
 import Foundation
 
 public struct NetPulseVersion {
-    public static let current = "1.2.1"
+    public static let current = "1.2.2"
 }
