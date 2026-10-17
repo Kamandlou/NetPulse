@@ -59,19 +59,15 @@ jobs:
             A lightweight, privacy-friendly native macOS menu bar application that continuously monitors real internet connectivity and notifies users when their internet connection drops or recovers.
 
             #### 📦 Download
-            - **macOS Disk Image (Installer)**: [NetPulse-1.1.0.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.1.0.dmg)
-            - **ZIP Archive**: [NetPulse-1.1.0.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.1.0.zip)
+            - **macOS Disk Image (Installer)**: [NetPulse-1.2.1.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.2.1.dmg)
+            - **ZIP Archive**: [NetPulse-1.2.1.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.2.1.zip)
 
             #### 💻 Compatibility
             - macOS 14 Sonoma, macOS 15 Sequoia, and newer
             - Runs natively on Apple Silicon (M1/M2/M3/M4) and Intel Macs
 
-            #### 🚀 What's New in v1.2.0
-            - **VPN Status Detection**: Instantly detects and displays active VPN connections (WireGuard, OpenVPN, IKEv2, Tailscale, etc.) right in the menu bar pop-up card.
-            - **Live Refresh on Pop-up Open**: VPN state is automatically queried as soon as the pop-up opens.
-            - **New Distinctive Menu Bar Icon**: Globe network icon (`network` / `network.slash`) replacing Wi-Fi symbols.
-            - **Modernized UI**: Refreshed pop-up card with soft glow indicator, interactive metric cards, latency chips, and smooth hover actions.
-            - **Guaranteed System Notifications**: Dual-layer notification dispatching.
-            - **Single-Instance Mutex**: Guaranteed single running instance.
+            #### 🚀 What's New in v1.2.1
+            - **Accurate Real-time VPN Disconnection Detection**: Completely resolved false VPN active states caused by macOS internal tunnels. NetPulse now filters internal tunnels (AirDrop/Continuity) and monitors live VPN status per second when the pop-up menu is open.
+            - **Live Refresh**: As soon as you disconnect or connect your VPN, the status reflects instantly without restarting.
           draft: false
           prerelease: false
