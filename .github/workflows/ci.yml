@@ -1,4 +1,4 @@
-name: CI & Build
+name: CI & Release
 
 on:
   push:
@@ -11,6 +11,8 @@ jobs:
   test-and-build:
     name: Build & Test NetPulse
     runs-on: macos-14
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
@@ -42,3 +44,36 @@ jobs:
             build/NetPulse-1.0.0.zip
             build/NetPulse-1.0.0.dmg
           if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/NetPulse-1.0.0.dmg
+            build/NetPulse-1.0.0.zip
+          name: "NetPulse ${{ github.ref_name }}"
+          body: |
+            ### NetPulse — Native macOS Internet Connectivity Monitor
+
+            A lightweight, privacy-friendly native macOS menu bar application that continuously monitors real internet connectivity and notifies users when their internet connection drops or recovers.
+
+            #### 📦 Download
+            - **macOS Disk Image (Installer)**: [NetPulse-1.0.0.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.0.0.dmg)
+            - **ZIP Archive**: [NetPulse-1.0.0.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.0.0.zip)
+
+            #### 💻 Compatibility
+            - macOS 14 Sonoma, macOS 15 Sequoia, and newer
+            - Runs natively on Apple Silicon (M1/M2/M3/M4) and Intel Macs
+
+            #### ⚡ Key Features
+            - **Real Internet Verification**: Probes actual internet reachability (Apple, Google, Cloudflare), not just Wi-Fi connection.
+            - **Menu Bar Utility**: Sits quietly in the menu bar with status SF Symbols and optional latency display.
+            - **Smart Notifications**: System notifications for disconnection and reconnection with exact downtime duration.
+            - **Debouncing & Hysteresis**: Zero false alarms from temporary packet drops.
+            - **Sleep/Wake Aware**: Mac sleeping time is never counted as an outage.
+            - **Outage History & Swift Charts**: Track historical downtime with interactive charts and CSV/JSON export.
+            - **English & Persian (فارسی)**: Complete bilingual support with proper Right-to-Left (RTL) layout.
+            - **Single-Instance Enforcement**: Only one instance can run at a time.
+          draft: false
+          prerelease: false
