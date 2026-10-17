@@ -1,11 +1,18 @@
 # NetPulse — Native macOS Internet Connectivity Monitor
 
 <p align="center">
-  <img src="Resources/AppIcon.icns" width="128" height="128" alt="NetPulse Icon" />
+  <img src="Resources/AppIcon.png" width="128" height="128" alt="NetPulse Icon" />
   <br>
   <strong>A lightweight, privacy-friendly native macOS menu bar application that continuously monitors real internet connectivity.</strong>
   <br>
   <em>Built with Swift 6, SwiftUI, Network.framework, and Swift Charts for macOS 14 Sonoma and newer.</em>
+  <br><br>
+  <a href="https://github.com/Kamandlou/NetPulse/releases/latest">
+    <img src="https://img.shields.io/github/v/release/Kamandlou/NetPulse?color=blue&label=Download%20NetPulse" alt="Latest Release" />
+  </a>
+  <img src="https://img.shields.io/badge/macOS-14.0%2B-brightgreen" alt="macOS 14+" />
+  <img src="https://img.shields.io/badge/Language-Swift%206-orange" alt="Swift 6" />
+  <img src="https://img.shields.io/badge/License-MIT-blue" alt="MIT License" />
 </p>
 
 ---
@@ -24,6 +31,48 @@
 
 ---
 
+## Installation / راهنمای نصب
+
+### 🇬🇧 English Installation Guide
+
+1. **Download the latest release**:
+   Download `NetPulse-1.0.0.dmg` from the [Releases Page](https://github.com/Kamandlou/NetPulse/releases/latest).
+2. **Install**:
+   Open the `.dmg` file and drag **NetPulse** into your `Applications` folder.
+3. **Launch**:
+   Open **NetPulse** from your `Applications` folder or via Spotlight (`⌘ Space`).
+
+> **Note on macOS Gatekeeper:**
+> Because this is a free, open-source application published without an annual Apple Developer ID certificate, macOS Gatekeeper may display a prompt on first launch stating that the developer cannot be verified.
+> - **Option A (Quickest):** Right-click (or Control-click) `NetPulse.app` in `Applications`, select **Open**, and click **Open** in the confirmation dialog.
+> - **Option B (Terminal):** Run the following command in Terminal:
+>   ```bash
+>   xattr -cr /Applications/NetPulse.app
+>   ```
+
+---
+
+### 🇮🇷 راهنمای نصب فارسی
+
+۱. **دانلود برنامه:**
+   فایل نصبی `NetPulse-1.0.0.dmg` را از [صفحه آخرین نسخه در گیت‌هاب (Releases)](https://github.com/Kamandlou/NetPulse/releases/latest) دانلود کنید.
+
+۲. **انتقال به برنامه‌ها:**
+   فایل `.dmg` دانلود شده را باز کرده و آیکون **NetPulse** را به داخل پوشه **Applications** بکشید (Drag & Drop).
+
+۳. **اجرا:**
+   برنامه **NetPulse** را از پوشه Applications یا از طریق Spotlight اجرا نمایید. آیکون وضعیت اینترنت بلافاصله در نوار منوی بالای مک (Menu Bar) ظاهر می‌شود.
+
+> **نکته امنیتی مک‌او‌اس (Gatekeeper):**
+> از آنجا که این پروژه متن‌باز و رایگان بدون پرداخت اشتراک سالانه توسعه‌دهندگان اپل منتشر شده است، سیستم‌عامل مک در اولین اجرا ممکن است پیام اخطار تأیید هویت توسعه‌دهنده را نشان دهد.
+> - **روش اول (ساده‌ترین):** در پوشه `Applications` روی آیکون برنامه راست‌کلیک (یا Control + کلیک) کرده و گزینه **Open** را بزنید، سپس در کادر باز شده روی دکمه **Open** کلیک کنید.
+> - **روش دوم (از طریق ترمینال):** دستور زیر را در برنامه Terminal اجرا کنید تا محدودیت قرنطینه امنیتی برداشته شود:
+>   ```bash
+>   xattr -cr /Applications/NetPulse.app
+>   ```
+
+---
+
 ## System Requirements
 
 - **Operating System**: macOS 14.0 (Sonoma) or newer (macOS 14, macOS 15 Sequoia, and newer).
@@ -32,10 +81,11 @@
 
 ---
 
-## Quick Start & Build Instructions
+## Build from Source
 
-### 1. Build and Run via Swift Package Manager (Terminal)
+If you prefer building from source code:
 
+### 1. Build and Run via Swift Package Manager
 ```bash
 # Build the project (debug mode)
 swift build
@@ -45,16 +95,12 @@ swift run NetPulse
 ```
 
 ### 2. Run the Automated Test Suite
-
 ```bash
 swift test
 ```
-All 15 tests across 6 test suites will execute and verify state machine transitions, hysteresis, notification deduplication, sleep/wake downtime deduction, and persistence.
+All 17 tests across 7 test suites will execute and verify state machine transitions, hysteresis, notification deduplication, sleep/wake downtime deduction, and persistence.
 
-### 3. Build the Runnable `.app`, ZIP, and DMG
-
-We provide an automated build script `scripts/build_app.sh`:
-
+### 3. Build the Release `.app`, ZIP, and DMG
 ```bash
 bash scripts/build_app.sh
 ```
@@ -65,13 +111,9 @@ This compiles a release binary, constructs the `NetPulse.app` bundle, embeds the
 - `build/NetPulse-1.0.0.dmg` (macOS Drag-and-Drop installer disk image)
 
 ### 4. Open in Xcode
-
-Double-click `NetPulse.xcodeproj` or run:
-
 ```bash
 open NetPulse.xcodeproj
 ```
-
 Select the **NetPulse** scheme and press **⌘R** to build and run.
 
 ---
@@ -154,52 +196,6 @@ Open the Settings window from the menu bar popup:
 
 5. **About**:
    - Application version, build number, developer information, and architecture details.
-
----
-
-## Automated Tests
-
-NetPulse includes 15 automated unit and integration tests covering:
-- State machine initial state and transition rules
-- Hysteresis thresholds and rapid fluctuation filtering
-- Reconnection duration calculations
-- Outage persistence and atomic file reloads
-- Time window calculation spanning midnight
-- Sleep/wake duration deduction
-- Strategy switching and interval updates
-- End-to-end monitor transitions and notification delivery
-
-Run them at any time with:
-```bash
-swift test
-```
-
----
-
-## Packaging & Distribution
-
-To create a release DMG for distribution:
-
-```bash
-bash scripts/build_app.sh
-```
-
-Output files in `build/`:
-- `NetPulse.app`: Ad-hoc codesigned application bundle.
-- `NetPulse-1.0.0.dmg`: Compressed DMG installer with `/Applications` symlink.
-- `NetPulse-1.0.0.zip`: Standard ZIP archive.
-
-### Optional Developer ID Signing & Notarization
-If signing with a paid Apple Developer certificate:
-```bash
-codesign --force --deep --sign "Developer ID Application: Your Name (TEAMID)" \
-    --options runtime \
-    --entitlements Resources/NetPulse.entitlements \
-    build/NetPulse.app
-
-xcrun notarytool submit build/NetPulse-1.0.0.dmg \
-    --keychain-profile "AC_PASSWORD" --wait
-```
 
 ---
 
