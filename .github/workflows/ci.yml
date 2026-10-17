@@ -16,8 +16,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_15.4.app || true
+      - name: Select Xcode 16
+        run: |
+          for xc in /Applications/Xcode_16.2.app /Applications/Xcode_16.1.app /Applications/Xcode_16.0.app /Applications/Xcode_16*.app /Applications/Xcode.app; do
+            if [ -d "$xc" ]; then
+              echo "==> Selecting Xcode: $xc"
+              sudo xcode-select -switch "$xc"
+              break
+            fi
+          done
+          echo "Active developer directory: $(xcode-select -p)"
+          swift --version
 
       - name: Run Automated Tests
         run: swift test

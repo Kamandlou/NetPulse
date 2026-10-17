@@ -1,5 +1,12 @@
 // swift-tools-version: 5.9
 import PackageDescription
+import Foundation
+
+var testSettings: [SwiftSetting] = []
+let cltMacro = "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing/libTestingMacros.dylib"
+if FileManager.default.fileExists(atPath: cltMacro) && !FileManager.default.fileExists(atPath: "/Applications/Xcode.app") {
+    testSettings.append(.unsafeFlags(["-load-plugin-library", cltMacro]))
+}
 
 let package = Package(
     name: "NetPulse",
@@ -27,9 +34,7 @@ let package = Package(
             name: "NetPulseTests",
             dependencies: ["NetPulseCore"],
             path: "Tests/NetPulseTests",
-            swiftSettings: [
-                .unsafeFlags(["-load-plugin-library", "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing/libTestingMacros.dylib"])
-            ]
+            swiftSettings: testSettings
         )
     ]
 )
