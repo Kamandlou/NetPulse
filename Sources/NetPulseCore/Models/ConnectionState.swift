@@ -27,15 +27,15 @@ public enum ConnectionState: String, Codable, Sendable, CaseIterable {
     public var menuBarSymbol: String {
         switch self {
         case .online:
-            return "wifi"
+            return "network"
         case .offline:
-            return "wifi.slash"
+            return "network.slash"
         case .checking:
             return "arrow.triangle.2.circlepath"
         case .unstable:
-            return "exclamationmark.triangle.fill"
+            return "waveform.path.ecg"
         case .unknown:
-            return "wifi.exclamationmark"
+            return "network"
         }
     }
 
