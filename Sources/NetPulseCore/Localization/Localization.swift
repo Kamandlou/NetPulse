@@ -32,6 +32,9 @@ public struct L10n {
         case lastCheck = "last_check"
         case latency = "latency"
         case currentUptime = "current_uptime"
+        case vpnStatus = "vpn_status"
+        case vpnConnected = "vpn_connected"
+        case vpnDisconnected = "vpn_disconnected"
         case notAvailable = "not_available"
         case justNow = "just_now"
         case secondsAgo = "seconds_ago"
@@ -149,6 +152,9 @@ public struct L10n {
         .lastCheck: "Last Check",
         .latency: "Latency",
         .currentUptime: "Current Uptime",
+        .vpnStatus: "VPN Connection",
+        .vpnConnected: "Active (Encrypted)",
+        .vpnDisconnected: "Not Active",
         .notAvailable: "N/A",
         .justNow: "Just now",
         .secondsAgo: "%d sec ago",
@@ -258,6 +264,9 @@ public struct L10n {
         .lastCheck: "آخرین بررسی",
         .latency: "تأخیر (Latency)",
         .currentUptime: "مدت پایداری فعلی",
+        .vpnStatus: "وضعیت فیلترشکن (VPN)",
+        .vpnConnected: "روشن و متصل (VPN Active)",
+        .vpnDisconnected: "خاموش (غیرفعال)",
         .notAvailable: "نامشخص",
         .justNow: "هم‌اکنون",
         .secondsAgo: "%d ثانیه پیش",

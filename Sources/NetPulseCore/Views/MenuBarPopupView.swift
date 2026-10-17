@@ -50,6 +50,9 @@ public struct MenuBarPopupView: View {
         .padding(14)
         .frame(width: 328)
         .environment(\.layoutDirection, settings.language.layoutDirection)
+        .onAppear {
+            monitor.refreshVPNStatus()
+        }
     }
 
     // MARK: - Hero Status Card
@@ -256,6 +259,14 @@ public struct MenuBarPopupView: View {
             }
 
             detailRow(
+                title: L10n.string(.vpnStatus, language: settings.language),
+                value: monitor.isVPNConnected ? L10n.string(.vpnConnected, language: settings.language) : L10n.string(.vpnDisconnected, language: settings.language),
+                icon: monitor.isVPNConnected ? "lock.shield.fill" : "shield.slash",
+                iconColor: monitor.isVPNConnected ? .purple : .secondary,
+                valueColor: monitor.isVPNConnected ? .purple : .secondary
+            )
+
+            detailRow(
                 title: L10n.string(.lastCheck, language: settings.language),
                 value: formattedLastCheck(),
                 icon: "arrow.clockwise.circle.fill",
@@ -283,7 +294,7 @@ public struct MenuBarPopupView: View {
         )
     }
 
-    private func detailRow(title: String, value: String, icon: String, iconColor: Color) -> some View {
+    private func detailRow(title: String, value: String, icon: String, iconColor: Color, valueColor: Color = .primary) -> some View {
         HStack(spacing: 8) {
             ZStack {
                 RoundedRectangle(cornerRadius: 6, style: .continuous)
@@ -303,7 +314,7 @@ public struct MenuBarPopupView: View {
 
             Text(value)
                 .font(.system(size: 11.5, weight: .semibold))
-                .foregroundColor(.primary)
+                .foregroundColor(valueColor)
                 .lineLimit(1)
         }
     }

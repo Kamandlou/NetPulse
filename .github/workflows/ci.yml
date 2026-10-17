@@ -66,11 +66,12 @@ jobs:
             - macOS 14 Sonoma, macOS 15 Sequoia, and newer
             - Runs natively on Apple Silicon (M1/M2/M3/M4) and Intel Macs
 
-            #### 🚀 What's New in v1.1.0
-            - **New Distinctive Menu Bar Icon**: Switched to a unique globe network icon (`network` / `network.slash`) that never conflicts with macOS Wi-Fi fan icons.
+            #### 🚀 What's New in v1.2.0
+            - **VPN Status Detection**: Instantly detects and displays active VPN connections (WireGuard, OpenVPN, IKEv2, Tailscale, etc.) right in the menu bar pop-up card.
+            - **Live Refresh on Pop-up Open**: VPN state is automatically queried as soon as the pop-up opens.
+            - **New Distinctive Menu Bar Icon**: Globe network icon (`network` / `network.slash`) replacing Wi-Fi symbols.
             - **Modernized UI**: Refreshed pop-up card with soft glow indicator, interactive metric cards, latency chips, and smooth hover actions.
-            - **Guaranteed System Notifications**: Dual-layer notification dispatching ensuring 100% notification delivery on disconnect and reconnect.
-            - **Immediate Offline on Wi-Fi Disable**: Zero latency detection when Wi-Fi is toggled off.
-            - **Single-Instance Mutex**: Guaranteed single running instance using LaunchServices & POSIX file locks.
+            - **Guaranteed System Notifications**: Dual-layer notification dispatching.
+            - **Single-Instance Mutex**: Guaranteed single running instance.
           draft: false
           prerelease: false

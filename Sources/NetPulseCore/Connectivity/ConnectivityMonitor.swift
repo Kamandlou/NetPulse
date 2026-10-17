@@ -15,6 +15,8 @@ public final class ConnectivityMonitor: ObservableObject {
     @Published public private(set) var uptimeStartDate: Date?
     @Published public private(set) var isPaused: Bool = false
     @Published public private(set) var isCheckInProgress: Bool = false
+    @Published public private(set) var isVPNConnected: Bool = false
+    @Published public private(set) var vpnInterfaceName: String? = nil
 
     private var stateMachine: ConnectivityStateMachine
     private let pathMonitor: NetworkPathMonitoring
@@ -156,6 +158,7 @@ public final class ConnectivityMonitor: ObservableObject {
             let reason = (pathInfo.interfaceType == .none) ? "Network interface disconnected" : "Network path unsatisfied"
             lastFailureReason = reason
             currentLatencyMs = nil
+            refreshVPNStatus()
             if let transition = stateMachine.markImmediateOffline(reason: reason, now: now) {
                 self.state = stateMachine.currentState
                 handleTransition(transition)
@@ -202,6 +205,12 @@ public final class ConnectivityMonitor: ObservableObject {
             .sink { [weak self] _ in
                 self?.performCheck()
             }
+    }
+
+    public func refreshVPNStatus() {
+        let vpnInfo = VPNDetector.shared.detectVPN()
+        self.isVPNConnected = vpnInfo.isConnected
+        self.vpnInterfaceName = vpnInfo.interfaceName
     }
 
     public func performCheck() {
@@ -266,6 +275,9 @@ public final class ConnectivityMonitor: ObservableObject {
         if !isSuccess {
             lastFailureReason = failureReason
         }
+
+        // Refresh VPN state on every check
+        refreshVPNStatus()
 
         let transition = stateMachine.recordResult(
             isSuccess: isSuccess,

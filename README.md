@@ -20,6 +20,7 @@
 ## Highlights
 
 - **Real Internet Verification (Not Just Wi-Fi)**: Differentiates between local Wi-Fi association and genuine global internet reachability using lightweight active HTTP/HTTPS endpoint probes.
+- **VPN Connection Detection**: Automatically detects whether an active VPN tunnel (WireGuard, OpenVPN, IKEv2, Tailscale, etc.) is active and displays encryption status in the pop-up menu.
 - **Debouncing & Hysteresis**: State machine requires configurable consecutive checks (default: 2 failures to mark Offline, 2 successes to mark Online) to eliminate false alerts from momentary packet drops.
 - **Native macOS Menu Bar Agent**: Runs quietly in the status bar with color-coded SF Symbols (`Green` = Online, `Red` = Offline, `Orange` = Unstable, `Gray` = Checking) and optional live latency readout.
 - **Smart System Notifications**: Uses `UNUserNotificationCenter` with independent toggles for disconnection and reconnection alerts, sound control, cooldowns, and downtime duration reporting.
@@ -36,7 +37,7 @@
 ### 🇬🇧 English Installation Guide
 
 1. **Download the latest release**:
-   Download `NetPulse-1.1.0.dmg` from the [Releases Page](https://github.com/Kamandlou/NetPulse/releases/latest).
+   Download `NetPulse-1.2.0.dmg` from the [Releases Page](https://github.com/Kamandlou/NetPulse/releases/latest).
 2. **Install**:
    Open the `.dmg` file and drag **NetPulse** into your `Applications` folder.
 3. **Launch**:
@@ -55,7 +56,7 @@
 ### 🇮🇷 راهنمای نصب فارسی
 
 ۱. **دانلود برنامه:**
-   فایل نصبی `NetPulse-1.1.0.dmg` را از [صفحه آخرین نسخه در گیت‌هاب (Releases)](https://github.com/Kamandlou/NetPulse/releases/latest) دانلود کنید.
+   فایل نصبی `NetPulse-1.2.0.dmg` را از [صفحه آخرین نسخه در گیت‌هاب (Releases)](https://github.com/Kamandlou/NetPulse/releases/latest) دانلود کنید.
 
 ۲. **انتقال به برنامه‌ها:**
    فایل `.dmg` دانلود شده را باز کرده و آیکون **NetPulse** را به داخل پوشه **Applications** بکشید (Drag & Drop).
@@ -107,8 +108,8 @@ bash scripts/build_app.sh
 
 This compiles a release binary, constructs the `NetPulse.app` bundle, embeds the `Info.plist`, `AppIcon.icns`, and entitlements, applies ad-hoc code signing, and creates:
 - `build/NetPulse.app` (Runnable macOS application)
-- `build/NetPulse-1.1.0.zip` (Compressed distribution archive)
-- `build/NetPulse-1.1.0.dmg` (macOS Drag-and-Drop installer disk image)
+- `build/NetPulse-1.2.0.zip` (Compressed distribution archive)
+- `build/NetPulse-1.2.0.dmg` (macOS Drag-and-Drop installer disk image)
 
 ### 4. Open in Xcode
 ```bash
