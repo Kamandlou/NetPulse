@@ -5,6 +5,7 @@ import AppKit
 public final class MenuBarPopupViewModel: ObservableObject {
     @Published public var now: Date = Date()
     @Published public var hoveredAction: String? = nil
+    @Published public var showingClearAlert: Bool = false
     private var timer: Timer?
 
     public init() {
@@ -61,6 +62,17 @@ public struct MenuBarPopupView: View {
         .environment(\.layoutDirection, settings.language.layoutDirection)
         .onAppear {
             monitor.refreshVPNStatus()
+        }
+        .alert(
+            L10n.string(.clearHistoryConfirmTitle, language: settings.language),
+            isPresented: $vm.showingClearAlert
+        ) {
+            Button(L10n.string(.delete, language: settings.language), role: .destructive) {
+                historyStore.clearAllHistory()
+            }
+            Button(L10n.string(.cancel, language: settings.language), role: .cancel) {}
+        } message: {
+            Text(L10n.string(.clearHistoryConfirmMessage, language: settings.language))
         }
     }
 
@@ -367,6 +379,17 @@ public struct MenuBarPopupView: View {
                 shortcut: "⌘H"
             ) {
                 WindowManager.shared.showHistory()
+            }
+
+            if !historyStore.records.isEmpty {
+                actionButton(
+                    id: "clear",
+                    title: L10n.string(.clearAllHistory, language: settings.language),
+                    icon: "trash",
+                    shortcut: nil
+                ) {
+                    vm.showingClearAlert = true
+                }
             }
 
             actionButton(

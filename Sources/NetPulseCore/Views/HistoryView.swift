@@ -8,6 +8,7 @@ public final class HistoryViewModel: ObservableObject {
     @Published public var searchText: String = ""
     @Published public var now: Date = Date()
     @Published public var exportMessage: String?
+    @Published public var showingClearAlert: Bool = false
     private var timer: Timer?
 
     public init() {
@@ -66,6 +67,18 @@ public struct HistoryView: View {
         .frame(minWidth: 740, minHeight: 560)
         .environment(\.layoutDirection, settings.language.layoutDirection)
         .preferredColorScheme(settings.appearance.colorScheme)
+        .alert(
+            L10n.string(.clearHistoryConfirmTitle, language: settings.language),
+            isPresented: $vm.showingClearAlert
+        ) {
+            Button(L10n.string(.delete, language: settings.language), role: .destructive) {
+                historyStore.clearAllHistory()
+                vm.exportMessage = "All history cleared"
+            }
+            Button(L10n.string(.cancel, language: settings.language), role: .cancel) {}
+        } message: {
+            Text(L10n.string(.clearHistoryConfirmMessage, language: settings.language))
+        }
     }
 
     // MARK: - Top Controls
@@ -119,6 +132,12 @@ public struct HistoryView: View {
                     exportFile(content: historyStore.exportJSON(), defaultFilename: "NetPulse-Outages.json")
                 }) {
                     Label(L10n.string(.exportJSON, language: settings.language), systemImage: "curlybraces")
+                }
+                Divider()
+                Button(role: .destructive, action: {
+                    vm.showingClearAlert = true
+                }) {
+                    Label(L10n.string(.clearAllHistory, language: settings.language), systemImage: "trash")
                 }
             } label: {
                 Image(systemName: "square.and.arrow.up")
@@ -359,6 +378,15 @@ public struct HistoryView: View {
             }
 
             Spacer()
+
+            Button(role: .destructive, action: {
+                vm.showingClearAlert = true
+            }) {
+                Label(L10n.string(.clearAllHistory, language: settings.language), systemImage: "trash")
+                    .font(.system(size: 11, weight: .medium))
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
 
             Button(action: {
                 NSPasteboard.general.clearContents()
