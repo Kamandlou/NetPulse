@@ -59,15 +59,15 @@ jobs:
             A lightweight, privacy-friendly native macOS menu bar application that continuously monitors real internet connectivity and notifies users when their internet connection drops or recovers.
 
             #### 📦 Download
-            - **macOS Disk Image (Installer)**: [NetPulse-1.3.1.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.1.dmg)
-            - **ZIP Archive**: [NetPulse-1.3.1.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.1.zip)
+            - **macOS Disk Image (Installer)**: [NetPulse-1.3.2.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.2.dmg)
+            - **ZIP Archive**: [NetPulse-1.3.2.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.2.zip)
 
             #### 💻 Compatibility
             - macOS 14 Sonoma, macOS 15 Sequoia, and newer
             - Runs natively on Apple Silicon (M1/M2/M3/M4) and Intel Macs
 
-            #### 🚀 What's New in v1.3.1
-            - **Bug Fix for Clear History Confirmation**: Resolved an issue where confirming history deletion from the menu bar alert did not immediately reset the in-memory cards. Clear History now instantly zeroes metrics and deletes disk records.
-            - **SwiftUI Layout Reconnection**: Reconnected the reactive summary metrics section to live state changes.
+            #### 🚀 What's New in v1.3.2
+            - **Native macOS Modal Dialog for Clear History**: Replaced the in-window SwiftUI `.alert` inside `MenuBarExtra` with a proper modal `NSAlert`. This completely prevents the alert dialog from getting stuck, hanging the popover, or failing to dismiss upon clicking Delete.
+            - **Instant Outage Record Purge**: Deletion immediately wipes in-memory records and local disk cache without requiring a popover toggle.
           draft: false
           prerelease: false

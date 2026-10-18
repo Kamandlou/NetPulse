@@ -63,17 +63,22 @@ public struct MenuBarPopupView: View {
         .onAppear {
             monitor.refreshVPNStatus()
         }
-        .alert(
-            L10n.string(.clearHistoryConfirmTitle, language: settings.language),
-            isPresented: $vm.showingClearAlert
-        ) {
-            Button(L10n.string(.delete, language: settings.language), role: .destructive) {
-                historyStore.clearAllHistory()
-                vm.showingClearAlert = false
-            }
-            Button(L10n.string(.cancel, language: settings.language), role: .cancel) {}
-        } message: {
-            Text(L10n.string(.clearHistoryConfirmMessage, language: settings.language))
+    }
+
+    private func showNativeClearConfirmation() {
+        let alert = NSAlert()
+        alert.messageText = L10n.string(.clearHistoryConfirmTitle, language: settings.language)
+        alert.informativeText = L10n.string(.clearHistoryConfirmMessage, language: settings.language)
+        alert.alertStyle = .critical
+
+        let deleteBtn = alert.addButton(withTitle: L10n.string(.delete, language: settings.language))
+        deleteBtn.hasDestructiveAction = true
+        alert.addButton(withTitle: L10n.string(.cancel, language: settings.language))
+
+        NSApp.activate(ignoringOtherApps: true)
+        let response = alert.runModal()
+        if response == .alertFirstButtonReturn {
+            historyStore.clearAllHistory()
         }
     }
 
@@ -389,7 +394,7 @@ public struct MenuBarPopupView: View {
                     icon: "trash",
                     shortcut: nil
                 ) {
-                    vm.showingClearAlert = true
+                    showNativeClearConfirmation()
                 }
             }
 

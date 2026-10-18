@@ -67,18 +67,23 @@ public struct HistoryView: View {
         .frame(minWidth: 740, minHeight: 560)
         .environment(\.layoutDirection, settings.language.layoutDirection)
         .preferredColorScheme(settings.appearance.colorScheme)
-        .alert(
-            L10n.string(.clearHistoryConfirmTitle, language: settings.language),
-            isPresented: $vm.showingClearAlert
-        ) {
-            Button(L10n.string(.delete, language: settings.language), role: .destructive) {
-                historyStore.clearAllHistory()
-                vm.exportMessage = "All history cleared"
-                vm.showingClearAlert = false
-            }
-            Button(L10n.string(.cancel, language: settings.language), role: .cancel) {}
-        } message: {
-            Text(L10n.string(.clearHistoryConfirmMessage, language: settings.language))
+    }
+
+    private func showNativeClearConfirmation() {
+        let alert = NSAlert()
+        alert.messageText = L10n.string(.clearHistoryConfirmTitle, language: settings.language)
+        alert.informativeText = L10n.string(.clearHistoryConfirmMessage, language: settings.language)
+        alert.alertStyle = .critical
+
+        let deleteBtn = alert.addButton(withTitle: L10n.string(.delete, language: settings.language))
+        deleteBtn.hasDestructiveAction = true
+        alert.addButton(withTitle: L10n.string(.cancel, language: settings.language))
+
+        NSApp.activate(ignoringOtherApps: true)
+        let response = alert.runModal()
+        if response == .alertFirstButtonReturn {
+            historyStore.clearAllHistory()
+            vm.exportMessage = "All history cleared"
         }
     }
 
@@ -136,7 +141,7 @@ public struct HistoryView: View {
                 }
                 Divider()
                 Button(role: .destructive, action: {
-                    vm.showingClearAlert = true
+                    showNativeClearConfirmation()
                 }) {
                     Label(L10n.string(.clearAllHistory, language: settings.language), systemImage: "trash")
                 }
@@ -381,7 +386,7 @@ public struct HistoryView: View {
             Spacer()
 
             Button(role: .destructive, action: {
-                vm.showingClearAlert = true
+                showNativeClearConfirmation()
             }) {
                 Label(L10n.string(.clearAllHistory, language: settings.language), systemImage: "trash")
                     .font(.system(size: 11, weight: .medium))
