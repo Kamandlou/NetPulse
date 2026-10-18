@@ -43,7 +43,7 @@ public struct MenuBarPopupView: View {
         VStack(spacing: 12) {
             heroStatusCard
 
-            metricsCardsSection
+            todayStatsSection
 
             detailsCardSection
 
@@ -69,6 +69,7 @@ public struct MenuBarPopupView: View {
         ) {
             Button(L10n.string(.delete, language: settings.language), role: .destructive) {
                 historyStore.clearAllHistory()
+                vm.showingClearAlert = false
             }
             Button(L10n.string(.cancel, language: settings.language), role: .cancel) {}
         } message: {
@@ -198,7 +199,7 @@ public struct MenuBarPopupView: View {
 
     // MARK: - Metrics Cards Section
 
-    private var metricsCardsSection: some View {
+    private var todayStatsSection: some View {
         let todaySummary = StatisticsService.shared.computeStatistics(
             records: historyStore.records,
             filter: .today,

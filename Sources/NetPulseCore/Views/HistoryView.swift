@@ -74,6 +74,7 @@ public struct HistoryView: View {
             Button(L10n.string(.delete, language: settings.language), role: .destructive) {
                 historyStore.clearAllHistory()
                 vm.exportMessage = "All history cleared"
+                vm.showingClearAlert = false
             }
             Button(L10n.string(.cancel, language: settings.language), role: .cancel) {}
         } message: {

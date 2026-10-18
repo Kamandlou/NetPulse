@@ -59,16 +59,15 @@ jobs:
             A lightweight, privacy-friendly native macOS menu bar application that continuously monitors real internet connectivity and notifies users when their internet connection drops or recovers.
 
             #### 📦 Download
-            - **macOS Disk Image (Installer)**: [NetPulse-1.3.0.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.0.dmg)
-            - **ZIP Archive**: [NetPulse-1.3.0.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.0.zip)
+            - **macOS Disk Image (Installer)**: [NetPulse-1.3.1.dmg](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.1.dmg)
+            - **ZIP Archive**: [NetPulse-1.3.1.zip](https://github.com/Kamandlou/NetPulse/releases/download/${{ github.ref_name }}/NetPulse-1.3.1.zip)
 
             #### 💻 Compatibility
             - macOS 14 Sonoma, macOS 15 Sequoia, and newer
             - Runs natively on Apple Silicon (M1/M2/M3/M4) and Intel Macs
 
-            #### 🚀 What's New in v1.3.0
-            - **Quick Clear History Feature**: Added a dedicated Clear History button in the menu bar pop-up and history window toolbar, making it easy to reset past downtime records and track fresh outages.
-            - **Frosted Glass Dark Mode Polish**: Native materials that blend seamlessly against dark windows and backgrounds.
-            - **Accurate Real-time VPN Detection**: Instant detection of VPN tunnel disconnections.
+            #### 🚀 What's New in v1.3.1
+            - **Bug Fix for Clear History Confirmation**: Resolved an issue where confirming history deletion from the menu bar alert did not immediately reset the in-memory cards. Clear History now instantly zeroes metrics and deletes disk records.
+            - **SwiftUI Layout Reconnection**: Reconnected the reactive summary metrics section to live state changes.
           draft: false
           prerelease: false

@@ -115,6 +115,7 @@ public final class OutageHistoryStore: ObservableObject {
         records.removeAll()
         ongoingOutage = nil
         sleepDurationDeductions.removeAll()
+        saveRecords()
         try? FileManager.default.removeItem(at: fileURL)
     }
 
